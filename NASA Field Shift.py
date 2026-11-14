@@ -21,9 +21,9 @@ parameters = [
     "msl_pressure:hPa"
 ]
 
-# Historical period
-start = dt.datetime(2023, 1, 1, tzinfo=dt.timezone.utc)
-end = dt.datetime(2024, 1, 1, tzinfo=dt.timezone.utc)
+# Historical period (2010 to 2026)
+start = dt.datetime(2010, 1, 1, tzinfo=dt.timezone.utc)
+end = dt.datetime(2026, 11, 14, tzinfo=dt.timezone.utc)
 
 
 # Daily interval
@@ -46,7 +46,9 @@ df = api.query_time_series(
 
 filename = (f"islamabad_weather_{datetime.now():Date_%d_%m_%Y_Time_%H_%M_%S}.csv")
 
-df.to_csv(f"C:\\My Repositories\\NASA-SpaceApps-Hackathon-2026\\{filename}", index=True)
+script_dir = os.path.dirname(os.path.abspath(__file__))
+output_path = os.path.join(script_dir, filename)
+df.to_csv(output_path, index=True)
 
 print(f"Dataset saved successfully: {filename}")
 
