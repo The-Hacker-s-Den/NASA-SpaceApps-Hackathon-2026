@@ -1,0 +1,55 @@
+{
+  "training_timestamp": "2026-11-14T18:18:46.817161",
+  "dataset_used": "weather_dataset_2000_2026_4h.csv",
+  "total_samples": 235516,
+  "targets": [
+    "t_2m:C",
+    "precip_1h:mm",
+    "relative_humidity_2m:p",
+    "wind_speed_10m:ms",
+    "msl_pressure:hPa"
+  ],
+  "feature_names": [
+    "lat",
+    "lon",
+    "year",
+    "day_of_year",
+    "hour",
+    "sin_hour",
+    "cos_hour",
+    "sin_doy",
+    "cos_doy",
+    "sin_month",
+    "cos_month",
+    "norm_lat",
+    "norm_lon",
+    "year_scaled"
+  ],
+  "metrics": {
+    "t_2m:C": {
+      "mae": 1.1736873388290405,
+      "rmse": 1.5349761624302594,
+      "r2": 0.9754467606544495
+    },
+    "precip_1h:mm": {
+      "mae": 0.14994634687900543,
+      "rmse": 0.4717819861134486,
+      "r2": 0.16717755794525146
+    },
+    "relative_humidity_2m:p": {
+      "mae": 6.106857776641846,
+      "rmse": 8.104594267585979,
+      "r2": 0.845156192779541
+    },
+    "wind_speed_10m:ms": {
+      "mae": 0.6369389891624451,
+      "rmse": 0.9124443207044322,
+      "r2": 0.3622015714645386
+    },
+    "msl_pressure:hPa": {
+      "mae": 1.1911641359329224,
+      "rmse": 1.5305568138128156,
+      "r2": 0.9569540619850159
+    }
+  }
+}

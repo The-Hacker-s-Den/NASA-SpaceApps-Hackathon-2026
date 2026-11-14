@@ -23,7 +23,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 if script_dir not in sys.path:
     sys.path.insert(0, script_dir)
 
-PRITHVI_PATH = r"C:\Users\Hp\prithvi"
+PRITHVI_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "prithvi")
 if os.path.exists(PRITHVI_PATH) and PRITHVI_PATH not in sys.path:
     sys.path.insert(0, PRITHVI_PATH)
 

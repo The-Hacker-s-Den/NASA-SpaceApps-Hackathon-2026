@@ -226,6 +226,46 @@ def simulate_climate_sensitivity(base_temp: float, base_precip: float,
     else:
         hydro_status = "Hydrological balance stable. Adequate infiltration."
 
+    # Dynamic Climate Analog & Recommended City in Pakistan
+    if temp_delta >= 2.0:
+        rec_city = "Murree"
+        rec_reason = "High-altitude mountain microclimate (2,291m elevation) provides natural 12°C cooling buffer against extreme heatwaves."
+        rec_crops = "Highland Vegetables (Tomato, Peas) & Orchards"
+        rec_temp = round(base_temp - 12.0 + temp_delta * 0.4, 1)
+        rec_vwc = round(min(0.45, new_vwc + 0.08), 4)
+    elif temp_delta <= -1.5:
+        rec_city = "Multan"
+        rec_reason = "Southern Punjab lower-latitude plain provides high winter solar insolation, remaining completely frost-free."
+        rec_crops = "Frost-Resilient Wheat (Fakhar-e-Bhakkar) & Late Pulses"
+        rec_temp = round(base_temp + 5.0, 1)
+        rec_vwc = round(new_vwc, 4)
+    elif precip_mult <= 0.70:
+        rec_city = "Chakwal"
+        rec_reason = "Pothohar Barani benchmark: engineered deep-rooting varieties (Chakwal-50, Bari-2016) conserve scarce moisture."
+        rec_crops = "Groundnut (Bari-2016), Desi Chickpea & Olive"
+        rec_temp = round(base_temp, 1)
+        rec_vwc = round(new_vwc, 4)
+    elif precip_mult >= 1.40:
+        rec_city = "Kharian"
+        rec_reason = "Elevated plateau with natural ravine slope drainage prevents root rot and ponding during heavy monsoonal deluges."
+        rec_crops = "Ridge-Furrow Maize, Fodder Sorghum & Canola"
+        rec_temp = round(base_temp, 1)
+        rec_vwc = round(min(0.38, new_vwc - 0.05), 4)
+    else:
+        rec_city = "Lahore"
+        rec_reason = "Balanced alluvial soil with dual canal and groundwater irrigation buffer."
+        rec_crops = "Grain Wheat (Akbar-2019) & Basmati Rice"
+        rec_temp = round(base_temp, 1)
+        rec_vwc = round(new_vwc, 4)
+
+    recommended_analog = {
+        "city": rec_city,
+        "reason": rec_reason,
+        "ideal_crops": rec_crops,
+        "projected_city_temp_c": rec_temp,
+        "projected_city_vwc": rec_vwc
+    }
+
     return {
         "inputs": {
             "temp_delta_c": temp_delta,
@@ -237,5 +277,6 @@ def simulate_climate_sensitivity(base_temp: float, base_precip: float,
         "projected_flood_risk_score": new_flood,
         "et_demand_shift_pct": et_increase_pct,
         "thermal_diagnosis": thermal_status,
-        "hydrological_diagnosis": hydro_status
+        "hydrological_diagnosis": hydro_status,
+        "recommended_city_analog": recommended_analog
     }

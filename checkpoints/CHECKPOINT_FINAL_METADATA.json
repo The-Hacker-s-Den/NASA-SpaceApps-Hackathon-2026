@@ -1,0 +1,80 @@
+{
+  "checkpoint_id": "CHECKPOINT_FINAL",
+  "team_name": "The Hackers Den",
+  "timestamp": "2026-11-14T21:49:35.408645",
+  "archive_size_bytes": 120646,
+  "total_files": 16,
+  "manifest": {
+    "prithvi_weather_gui.py": {
+      "size_bytes": 113181,
+      "sha256": "0896c3420482007fe5d408fff185205e74ed0ec97973ac5e9d35193aa366caa3"
+    },
+    "crop_catalog_service.py": {
+      "size_bytes": 7894,
+      "sha256": "1e6e2ecbe9fd0918cd232236627c33248aee153df69309c8b8ecb5ee402fb726"
+    },
+    "crop_database.sql": {
+      "size_bytes": 448104,
+      "sha256": "86b1c1974f1ea4809ed6fd0ffcdf1c99b649d3607045db1601ba1cb8d969fac3"
+    },
+    "nasa_crops_catalog.db": {
+      "size_bytes": 524288,
+      "sha256": "94cad4676727707d4c39173f84e5421c744da6505ed35c24936b96e30e4b7bc8"
+    },
+    "solar_astronomy.py": {
+      "size_bytes": 5096,
+      "sha256": "4ab9b987a6a9baac2f79cc165263143c220af03eb089e0a835b1efe926b0d0cd"
+    },
+    "predict_soil_weather.py": {
+      "size_bytes": 20455,
+      "sha256": "eda55da88412d85a815e5a49c0acf8a93e8c594348f4b60bee57d7a1a3fc2883"
+    },
+    "regional_crops_database.py": {
+      "size_bytes": 14687,
+      "sha256": "50ea9210a3d30c94b66bc60a2bec673be38a78ec0b84f5637810923b36328eaa"
+    },
+    "nasa_challenge_evaluator.py": {
+      "size_bytes": 15075,
+      "sha256": "e7915b4fd6d2773d8505bfb462fbf327e9473403ed926f289c3bd99264ca6586"
+    },
+    "accuweather_service.py": {
+      "size_bytes": 10196,
+      "sha256": "18e125d11c184339ac727be988f6e638d545635456975eb992a9a3a162192d3d"
+    },
+    "security_vault.py": {
+      "size_bytes": 10637,
+      "sha256": "5d419c9dea9155d01dab9e43833f4e2a0740dd7012153d542b45510c59ec585f"
+    },
+    "gemini_agri_advisor.py": {
+      "size_bytes": 14451,
+      "sha256": "13e47509cc6395ae27ec18a604a8e02c9648f4bde732fb975ce89f2300269887"
+    },
+    "location_service.py": {
+      "size_bytes": 12487,
+      "sha256": "bb76a127f3564544dda2deb70ba44f1cf43ca4a822a25494ce08f0d8f7214dd8"
+    },
+    "README.md": {
+      "size_bytes": 14708,
+      "sha256": "2b6fe70273761a0aaef343a25cf17acd944f46f66afdfce907a38414f3635125"
+    },
+    "test_nasa_challenge_features.py": {
+      "size_bytes": 6766,
+      "sha256": "d2ee70950e1f17684155302becd3a40043b549302158bce17fe832549f736a16"
+    },
+    "test_soil_aq_predictions.py": {
+      "size_bytes": 2743,
+      "sha256": "c9b999890daac4ca8cc984dce9ff3a6facf25f2091a4165a80f406fced1fe2e4"
+    },
+    "test_weather_predictions.py": {
+      "size_bytes": 2891,
+      "sha256": "ba364a4e744995c9bba3b9121d8f00ebfe1bd8a6773c3d1617e829451be3d557"
+    }
+  },
+  "test_summary": {
+    "test_nasa_challenge_features": "7/7 PASSED",
+    "test_soil_aq_predictions": "3/3 PASSED",
+    "test_weather_predictions": "3/3 PASSED",
+    "total_passed": 13,
+    "total_failed": 0
+  }
+}

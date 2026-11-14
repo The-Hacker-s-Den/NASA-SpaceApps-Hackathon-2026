@@ -1,0 +1,84 @@
+{
+  "checkpoint_id": "CHECKPOINT_1",
+  "name": "NASA Space Apps Hackathon 2026 \u2014 Checkpoint 1: Stable Working Baseline",
+  "created_at": "2026-11-14T15:32:23.923391Z",
+  "server_port": 5000,
+  "files": {
+    "prithvi_weather_gui.py": {
+      "size_bytes": 82066,
+      "sha256": "4eaa63cae6fb6873aadae00ce9ff9c0dc194ff3413dc27cf8bec2df3d084c1c7"
+    },
+    "predict_soil_weather.py": {
+      "size_bytes": 19175,
+      "sha256": "dc1e2b4ca01e49c262ac8d56b6f63740af6d3c328ca7bff6daecd7c0af5ef4fa"
+    },
+    "accuweather_service.py": {
+      "size_bytes": 8787,
+      "sha256": "ded21d876fbf6b5e5463f70dcd8fda5d490c6914a320d60688552714395c37f2"
+    },
+    "regional_crops_database.py": {
+      "size_bytes": 14687,
+      "sha256": "50ea9210a3d30c94b66bc60a2bec673be38a78ec0b84f5637810923b36328eaa"
+    },
+    "gemini_agri_advisor.py": {
+      "size_bytes": 14451,
+      "sha256": "13e47509cc6395ae27ec18a604a8e02c9648f4bde732fb975ce89f2300269887"
+    },
+    "security_vault.py": {
+      "size_bytes": 10637,
+      "sha256": "5d419c9dea9155d01dab9e43833f4e2a0740dd7012153d542b45510c59ec585f"
+    },
+    "nasa_challenge_evaluator.py": {
+      "size_bytes": 15075,
+      "sha256": "e7915b4fd6d2773d8505bfb462fbf327e9473403ed926f289c3bd99264ca6586"
+    },
+    "nasa_data_engine.py": {
+      "size_bytes": 22937,
+      "sha256": "51e02086542454de8acd536ebeea110f81aab8172b338064d9fa18b237d52053"
+    },
+    "nasa_hackathon_innovations.py": {
+      "size_bytes": 10428,
+      "sha256": "47bce4502ded4c18510d84d6c7b8975a63e6d70c06e474f79c74807b9488e559"
+    },
+    "location_service.py": {
+      "size_bytes": 12487,
+      "sha256": "bb76a127f3564544dda2deb70ba44f1cf43ca4a822a25494ce08f0d8f7214dd8"
+    },
+    "main.py": {
+      "size_bytes": 14245,
+      "sha256": "262160f00e38cbec027cd069b6fb813a58bb91bf46f2a2308953fa93c5c8fa36"
+    },
+    "prithvi_soil_weather_model.py": {
+      "size_bytes": 18534,
+      "sha256": "6d8f37c97dde0d2d470b973c2ba85da1476bb540086ad9447f849d8d717ea777"
+    },
+    "prithvi_weather_model.py": {
+      "size_bytes": 9610,
+      "sha256": "2775510e96c24456652f6dfa53584c80fe5f56543ce6cd1d8847412f239e9db3"
+    },
+    "test_nasa_challenge_features.py": {
+      "size_bytes": 6766,
+      "sha256": "d2ee70950e1f17684155302becd3a40043b549302158bce17fe832549f736a16"
+    },
+    "test_soil_aq_predictions.py": {
+      "size_bytes": 2743,
+      "sha256": "c9b999890daac4ca8cc984dce9ff3a6facf25f2091a4165a80f406fced1fe2e4"
+    },
+    "test_weather_predictions.py": {
+      "size_bytes": 2891,
+      "sha256": "ba364a4e744995c9bba3b9121d8f00ebfe1bd8a6773c3d1617e829451be3d557"
+    },
+    "README.md": {
+      "size_bytes": 8664,
+      "sha256": "af6de8f8ef00bee9f738b756946c619d0964c33f68d657db7feef2d809cc5b94"
+    },
+    "nasa_secure_vault.db": {
+      "size_bytes": 1003520,
+      "sha256": "1671ef999493b69a944f83be656edec061d8e3b6cec454280cc72401a4ebf716"
+    },
+    "weather_model_metadata.json": {
+      "size_bytes": 1226,
+      "sha256": "3153f3037abcd913933c70455400ec38624d2dbfc45c8c3af9ff8051f97822ed"
+    }
+  }
+}

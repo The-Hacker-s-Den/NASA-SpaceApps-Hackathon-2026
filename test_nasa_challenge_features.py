@@ -97,15 +97,15 @@ class TestNASAChallengeFeatures(unittest.TestCase):
 
     def test_html_dashboard_elements(self):
         """Verifies that all GUI components are embedded in the HTML dashboard template."""
-        self.assertIn("NASA Earth-Data Driven Crop Rotation Engine", HTML_DASHBOARD)
-        self.assertIn("Climate \"What-If\" Sensitivity Simulator", HTML_DASHBOARD)
-        self.assertIn("NASA Scientific Intelligence — Terminology & Data Fusion", HTML_DASHBOARD)
+        self.assertIn("Crop Rotation Simulator", HTML_DASHBOARD)
+        self.assertIn("Interactive Map Widget", HTML_DASHBOARD)
+        self.assertIn("NASA Scientific Intelligence Glossary", HTML_DASHBOARD)
         self.assertIn("climate-temp-slider", HTML_DASHBOARD)
         self.assertIn("climate-precip-slider", HTML_DASHBOARD)
-        self.assertIn("prio-water", HTML_DASHBOARD)
-        self.assertIn("prio-income", HTML_DASHBOARD)
         self.assertIn("glossary-modal", HTML_DASHBOARD)
-        self.assertIn("Farmer-Centered Decision Support", HTML_DASHBOARD)
+        self.assertIn("Hourly Forecast", HTML_DASHBOARD)
+        self.assertIn("UV Index Widget", HTML_DASHBOARD)
+        self.assertIn("Sunrise/Sunset Widget", HTML_DASHBOARD)
 
     def test_gui_http_endpoints(self):
         """Tests that the HTTP server correctly responds to the new JSON API endpoints."""

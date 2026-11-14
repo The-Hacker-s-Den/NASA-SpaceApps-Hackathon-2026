@@ -44,7 +44,7 @@ from nasa_hackathon_innovations import (
 
 def clear_banner():
     print("\n" + "=" * 75)
-    print(" 🛰️  NASA SPACE APPS HACKATHON 2026 — PRITHVI AI AGRO-CLIMATIC SYSTEM")
+    print(" 🛰️  NASA SPACE APPS HACKATHON 2026 — THE HACKERS DEN AGRO-CLIMATIC SYSTEM")
     print("     NASA-IBM Prithvi EO-V2 300M · NASA POWER API · Flood Hydrology")
     print("=" * 75)
 
