@@ -26,6 +26,9 @@ files_to_copy = [
     "gemini_agri_advisor.py",
     "location_service.py",
     "README.md",
+    "requirements.txt",
+    "run.bat",
+    "run.sh",
     "test_nasa_challenge_features.py",
     "test_soil_aq_predictions.py",
     "test_weather_predictions.py"

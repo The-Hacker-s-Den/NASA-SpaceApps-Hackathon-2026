@@ -1,9 +1,9 @@
 {
   "checkpoint_id": "CHECKPOINT_FINAL",
   "team_name": "The Hackers Den",
-  "timestamp": "2026-11-14T21:49:35.408645",
-  "archive_size_bytes": 120646,
-  "total_files": 16,
+  "timestamp": "2026-11-14T22:13:59.332634",
+  "archive_size_bytes": 122454,
+  "total_files": 19,
   "manifest": {
     "prithvi_weather_gui.py": {
       "size_bytes": 113181,
@@ -54,8 +54,20 @@
       "sha256": "bb76a127f3564544dda2deb70ba44f1cf43ca4a822a25494ce08f0d8f7214dd8"
     },
     "README.md": {
-      "size_bytes": 14708,
-      "sha256": "2b6fe70273761a0aaef343a25cf17acd944f46f66afdfce907a38414f3635125"
+      "size_bytes": 15648,
+      "sha256": "30eb0b95d207010f89e2ea70da8419184a7fc5313c5c6c89efcb5bdb36a51863"
+    },
+    "requirements.txt": {
+      "size_bytes": 309,
+      "sha256": "2e5ef0dd72c8fe0db57cd55f25a7594ff9d6efaddebb36014eb79dd193a5cf11"
+    },
+    "run.bat": {
+      "size_bytes": 1243,
+      "sha256": "69d9699c1b1bddf032fc20f71540c01c09efd0029b112a31d3c5988966922d0e"
+    },
+    "run.sh": {
+      "size_bytes": 869,
+      "sha256": "dae8ddf252afb3aab0b50887f044e359b398280595adf7314f8cc0ba4a376d0e"
     },
     "test_nasa_challenge_features.py": {
       "size_bytes": 6766,
