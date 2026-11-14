@@ -34,7 +34,29 @@ ACCUWEATHER_LOCATION_KEYS = {
     "bhakkar": "259684",
     "faisalabad": "260626",
     "sialkot": "259924",
-    "bahawalpur": "259636"
+    "sargodha": "260481",
+    "sahiwal": "260467",
+    "dg_khan": "259648",
+    "bahawalpur": "259636",
+    "karachi": "261158",
+    "hyderabad": "260622",
+    "sukkur": "261053",
+    "larkana": "261051",
+    "mirpurkhas": "260621",
+    "peshawar": "259371",
+    "abbottabad": "260624",
+    "swat": "260195",
+    "mardan": "259740",
+    "di_khan": "259647",
+    "quetta": "257002",
+    "gwadar": "257007",
+    "turbat": "257012",
+    "khuzdar": "257008",
+    "gilgit": "258284",
+    "skardu": "258285",
+    "muzaffarabad": "256877",
+    "mirpur": "256878",
+    "rawalakot": "256879"
 }
 
 _HOURLY_CACHE = {}  # key -> (timestamp, data)

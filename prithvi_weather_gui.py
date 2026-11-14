@@ -40,7 +40,11 @@ from security_vault import (
     init_secure_database,
     create_security_session,
     save_secure_assessment,
-    get_secure_assessments
+    get_secure_assessments,
+    save_user_location,
+    get_user_saved_locations,
+    delete_user_saved_location,
+    set_default_saved_location
 )
 from nasa_hackathon_innovations import (
     calculate_ccrs,
@@ -241,11 +245,24 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
         <!-- Left: Location Title + Subtitle + Team Badge -->
         <div class="flex items-center space-x-3">
           <div>
-            <div class="flex items-center space-x-2.5">
+            <div class="flex items-center space-x-2">
               <h1 id="top-location-name" class="text-xl sm:text-2xl font-bold tracking-tight text-white leading-tight">Chakwal, Punjab</h1>
               <button onclick="openCityPicker()" class="text-gray-400 hover:text-blue-400 text-xs transition p-1" title="Select Province & City">
                 <i class="fa-solid fa-chevron-down text-[11px]"></i>
               </button>
+              
+              <!-- Save Location Button -->
+              <button id="btn-save-location" onclick="toggleSaveCurrentLocation()" class="flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-[#1b1e27] hover:bg-[#252a34] border border-white/10 text-xs text-amber-300 hover:text-amber-200 transition shadow" title="Save this location to favorites">
+                <i id="save-location-icon" class="fa-regular fa-star text-amber-400"></i>
+                <span id="save-location-text" class="text-[11px] font-semibold">Save Location</span>
+              </button>
+
+              <!-- View Saved Locations Button -->
+              <button onclick="openSavedLocationsModal()" class="flex items-center space-x-1 px-2.5 py-1 rounded-full bg-[#1b1e27] hover:bg-[#252a34] border border-white/10 text-xs text-blue-300 hover:text-blue-200 transition shadow" title="View Saved Locations">
+                <i class="fa-solid fa-bookmark text-blue-400"></i>
+                <span class="text-[11px] font-semibold">Saved (<span id="saved-count-badge">0</span>)</span>
+              </button>
+
               <div class="hidden sm:flex items-center space-x-1.5 px-3 py-0.5 rounded-full bg-gradient-to-r from-cyan-950/90 via-blue-950/90 to-purple-950/90 border border-cyan-500/50 text-[10px] font-mono font-bold text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.3)]" title="NASA Space Apps Hackathon 2026 Team">
                 <i class="fa-solid fa-terminal text-cyan-400 text-[10px]"></i>
                 <span>The Hackers Den</span>
@@ -284,9 +301,9 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
 
         <!-- Right: Unit Toggle, Avatar, Settings -->
         <div class="flex items-center space-x-2.5">
-          <!-- Temp Unit Toggle (°F / °C) -->
-          <button onclick="toggleTempUnit()" id="temp-unit-toggle" class="px-3 py-1 rounded-full bg-[#1b1e27] hover:bg-[#252a34] border border-white/10 text-xs text-white font-mono font-bold transition shadow-sm">
-            °F
+          <!-- Temp Unit Toggle (°C / °F) -->
+          <button onclick="toggleTempUnit()" id="temp-unit-toggle" class="px-3 py-1 rounded-full bg-[#1b1e27] hover:bg-[#252a34] border border-white/10 text-xs text-white font-mono font-bold transition shadow-sm" title="Toggle Temperature Unit (°C / °F)">
+            °C
           </button>
 
           <!-- User Profile Avatar -->
@@ -308,6 +325,20 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
 
       </header>
 
+      <!-- SAVED LOCATIONS QUICK-SWITCH TRAY -->
+      <div id="saved-locations-tray" class="flex items-center space-x-2 overflow-x-auto custom-scroll py-1 px-1 flex-shrink-0 text-xs bg-black/20 rounded-2xl border border-white/5">
+        <div class="flex items-center space-x-1.5 text-amber-300 font-semibold text-[11px] flex-shrink-0 pl-1">
+          <i class="fa-solid fa-bookmark text-amber-400 text-[10px]"></i>
+          <span>Saved Sites:</span>
+        </div>
+        <div id="saved-locations-chips-container" class="flex items-center space-x-1.5 overflow-x-auto custom-scroll">
+          <!-- Dynamically populated chips -->
+        </div>
+        <button onclick="openSavedLocationsModal()" class="px-2 py-0.5 rounded-full bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white text-[10px] flex-shrink-0 border border-white/10 transition ml-auto" title="Manage Saved Locations">
+          <i class="fa-solid fa-gear text-[9px] mr-1"></i>Manage
+        </button>
+      </div>
+
       <!-- ── 3. TWO-COLUMN BALANCED GRID ────────────────────────────────────── -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 flex-1">
 
@@ -321,7 +352,7 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
             <div class="flex items-start justify-between">
               <div>
                 <div id="hero-temp-display" class="text-6xl sm:text-7xl font-bold tracking-tight text-white leading-none">
-                  58°F
+                  14°C
                 </div>
                 <div id="hero-condition-display" class="text-2xl font-normal text-gray-200 mt-2">
                   Cloudy
@@ -354,7 +385,7 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
             <div class="flex items-center space-x-6 sm:space-x-8 text-xs text-gray-300 pt-3 border-t border-white/10">
               <div>
                 <span class="text-gray-400 block text-[10px]">Feels like</span>
-                <span id="hero-feels-like" class="font-semibold text-white text-sm">56°</span>
+                <span id="hero-feels-like" class="font-semibold text-white text-sm">13°</span>
               </div>
               <div>
                 <span class="text-gray-400 block text-[10px]">Humidity</span>
@@ -877,12 +908,75 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
           </select>
         </div>
 
+        <div class="flex items-center space-x-2 pt-1">
+          <input type="checkbox" id="modal-set-default-check" class="rounded bg-[#1c1f26] border-white/20 text-emerald-500 focus:ring-0">
+          <label for="modal-set-default-check" class="text-gray-300 text-[11px] cursor-pointer">Set as default home location</label>
+        </div>
+
+        <button onclick="applyAndSaveModalLocation()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold transition flex items-center justify-center space-x-2 shadow">
+          <i class="fa-solid fa-floppy-disk"></i>
+          <span>Save & Load Location Details</span>
+        </button>
+
         <button onclick="autoDetectLocation(); closeCityPicker();" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition flex items-center justify-center space-x-2 shadow">
           <i class="fa-solid fa-crosshairs"></i>
           <span>Auto-Detect My Location (GPS / Network API)</span>
         </button>
+
+        <!-- Saved Locations Quick Access in Modal -->
+        <div class="border-t border-white/10 pt-2.5">
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="text-gray-400 font-semibold text-[11px] flex items-center space-x-1">
+              <i class="fa-solid fa-bookmark text-amber-400"></i>
+              <span>Saved Locations:</span>
+            </span>
+            <button onclick="openSavedLocationsModal(); closeCityPicker();" class="text-[10px] text-blue-400 hover:underline">Manage All</button>
+          </div>
+          <div id="modal-saved-chips" class="flex flex-wrap gap-1.5 max-h-24 overflow-y-auto custom-scroll">
+            <!-- Populated via JS -->
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+
+  <!-- ── 4.5. MODAL: SAVED LOCATIONS MANAGER ───────────────────────────────── -->
+  <div id="saved-locations-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="dashboard-frame max-w-lg w-full p-6 rounded-[28px] border border-white/10 space-y-4 shadow-2xl max-h-[85vh] flex flex-col">
+      <div class="flex justify-between items-center border-b border-white/10 pb-3 flex-shrink-0">
+        <h3 class="font-bold text-sm text-white flex items-center space-x-2">
+          <i class="fa-solid fa-bookmark text-amber-400"></i>
+          <span>Saved Agricultural Sites & Research Hubs</span>
+        </h3>
+        <button onclick="closeSavedLocationsModal()" class="text-gray-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Quick Save Current Active Location Form -->
+      <div class="bg-black/30 p-3 rounded-2xl border border-white/5 space-y-2 flex-shrink-0 text-xs">
+        <div class="flex justify-between items-center">
+          <span class="text-gray-300 font-semibold">Save Current Active Location:</span>
+          <span id="save-current-name-disp" class="text-emerald-400 font-mono font-bold">Chakwal</span>
+        </div>
+        <div class="flex space-x-2">
+          <input type="text" id="save-custom-label-input" placeholder="Custom Label (e.g. Olive Orchard, Plot B)..." class="flex-1 px-3 py-1.5 rounded-xl bg-[#161922] border border-white/10 text-white text-xs placeholder-gray-500 focus:outline-none focus:border-blue-500">
+          <button onclick="saveCurrentLocationWithLabel()" class="px-3 py-1.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs transition flex items-center space-x-1 shadow">
+            <i class="fa-solid fa-plus"></i>
+            <span>Save</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- List of Saved Locations -->
+      <div class="flex-1 overflow-y-auto custom-scroll space-y-2 text-xs" id="saved-locations-list-container">
+        <!-- Dynamically populated via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 bg-[#1b1e27] border border-emerald-500/50 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-2">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400"></i>
+    <span id="toast-msg" class="text-xs font-medium">Location saved successfully.</span>
   </div>
 
   <!-- ── 5. MODAL: NASA SCIENTIFIC GLOSSARY & DATA FUSION ─────────────────── -->
@@ -1027,7 +1121,7 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
     let currentCity = "chakwal";
     let currentProvince = "Punjab";
     let activeLayerIndex = 0;
-    let useFahrenheit = true;
+    let useFahrenheit = false;
     let latestData = null;
     let pakistanData = {};
     let currentFarmerPriority = "water";
@@ -1038,6 +1132,7 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
     let glossaryData = null;
     let hourlyStartIndex = 0;
     let currentAnalogCity = "Murree";
+    let savedLocations = [];
 
     const REGISTERED_CITIES_LIST = [
       { name: "Lahore", key: "lahore", province: "Punjab", barani: false },
@@ -1130,6 +1225,7 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
     function toggleTempUnit() {
       useFahrenheit = !useFahrenheit;
       document.getElementById('temp-unit-toggle').innerText = useFahrenheit ? '°F' : '°C';
+      try { localStorage.setItem('fieldshift_temp_unit', useFahrenheit ? 'F' : 'C'); } catch (e) {}
       if (latestData) updateDashboardUI(latestData);
     }
 
@@ -1235,12 +1331,14 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
       if (radiusCircle) radiusCircle.setLatLng([lat, lon]);
       map.panTo([lat, lon]);
       queryPrediction(cityName, lat, lon);
+      updateSaveButtonState();
     }
 
     function selectCity(cityKey) {
       currentCity = cityKey;
       clearSearch();
       queryPrediction(cityKey);
+      updateSaveButtonState();
     }
 
     // ── MAIN PREDICTION & DATA BINDING ──────────────────────────────────────
@@ -1374,6 +1472,11 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
       // 4. SYNC ROTATIONS & WHAT-IF ANALOG CITY
       queryRotations();
       onClimateSliderChange();
+
+      // 5. UPDATE SAVE LOCATION BUTTON & FORM
+      updateSaveButtonState();
+      const saveCurName = document.getElementById('save-current-name-disp');
+      if (saveCurName) saveCurName.innerText = data.display_name || data.location;
     }
 
     // ── RENDER DYNAMIC HOURLY FORECAST FOR THIS CITY ─────────────────────────
@@ -1813,6 +1916,19 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
       try {
         const resp = await fetch('/api/provinces');
         pakistanData = await resp.json();
+        REGISTERED_CITIES_LIST.length = 0;
+        for (const [prov, pdata] of Object.entries(pakistanData)) {
+          for (const [ckey, cinfo] of Object.entries(pdata.cities || {})) {
+            REGISTERED_CITIES_LIST.push({
+              name: cinfo.name,
+              key: ckey,
+              province: prov,
+              barani: !!cinfo.barani,
+              lat: cinfo.lat,
+              lon: cinfo.lon
+            });
+          }
+        }
         populateCitySelect(currentProvince);
       } catch (e) {}
     }
@@ -1850,11 +1966,372 @@ HTML_DASHBOARD = r"""<!DOCTYPE html>
       }
     }
 
-    window.onload = function() {
+    // ── SAVED LOCATIONS CONTROLLER ──────────────────────────────────────────
+    function openSavedLocationsModal() {
+      renderSavedLocationsModalList();
+      document.getElementById('saved-locations-modal').classList.remove('hidden');
+      document.getElementById('saved-locations-modal').classList.add('flex');
+    }
+
+    function closeSavedLocationsModal() {
+      document.getElementById('saved-locations-modal').classList.add('hidden');
+      document.getElementById('saved-locations-modal').classList.remove('flex');
+    }
+
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toast-notification');
+      const toastMsg = document.getElementById('toast-msg');
+      const toastIcon = document.getElementById('toast-icon');
+      if (!toast || !toastMsg) return;
+
+      toastMsg.innerText = msg;
+      if (isSuccess) {
+        toast.className = "fixed bottom-5 right-5 z-50 bg-[#1b1e27] border border-emerald-500/60 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0";
+        if (toastIcon) toastIcon.className = "fa-solid fa-circle-check text-emerald-400";
+      } else {
+        toast.className = "fixed bottom-5 right-5 z-50 bg-[#1b1e27] border border-rose-500/60 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 transition-all duration-300 opacity-100 pointer-events-auto transform translate-y-0";
+        if (toastIcon) toastIcon.className = "fa-solid fa-triangle-exclamation text-rose-400";
+      }
+
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.className = "fixed bottom-5 right-5 z-50 bg-[#1b1e27] border border-emerald-500/50 text-white px-4 py-2.5 rounded-2xl shadow-2xl flex items-center space-x-2.5 transition-all duration-300 opacity-0 pointer-events-none transform translate-y-2";
+      }, 3500);
+    }
+
+    async function loadSavedLocations() {
+      try {
+        const resp = await fetch('/api/saved-locations');
+        savedLocations = await resp.json();
+      } catch (e) {
+        const local = localStorage.getItem('fieldshift_saved_locations');
+        if (local) {
+          try { savedLocations = JSON.parse(local); } catch (err) { savedLocations = []; }
+        }
+      }
+
+      try { localStorage.setItem('fieldshift_saved_locations', JSON.stringify(savedLocations)); } catch (e) {}
+
+      updateSavedCountBadge();
+      renderSavedLocationsTray();
+      renderModalSavedChips();
+      updateSaveButtonState();
+    }
+
+    function updateSavedCountBadge() {
+      const badge = document.getElementById('saved-count-badge');
+      if (badge) badge.innerText = savedLocations.length;
+    }
+
+    function isLocationSaved(name, lat, lon) {
+      if (!savedLocations || savedLocations.length === 0) return false;
+      const cName = (name || currentCity || "").toLowerCase().trim();
+      return savedLocations.some(l => {
+        if (l.name.toLowerCase() === cName) return true;
+        if (lat !== undefined && lon !== undefined && lat !== null && lon !== null) {
+          const d = Math.hypot(l.lat - lat, l.lon - lon);
+          if (d < 0.05) return true;
+        }
+        return false;
+      });
+    }
+
+    function updateSaveButtonState() {
+      const btn = document.getElementById('btn-save-location');
+      const icon = document.getElementById('save-location-icon');
+      const text = document.getElementById('save-location-text');
+      if (!btn || !icon || !text) return;
+
+      const saved = isLocationSaved(currentCity, currentLat, currentLon);
+      if (saved) {
+        btn.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-amber-950/70 hover:bg-amber-900/80 border border-amber-500/60 text-xs text-amber-300 transition shadow";
+        icon.className = "fa-solid fa-star text-amber-400";
+        text.innerText = "Saved ★";
+        btn.title = "Location saved in your research sites. Click to manage.";
+      } else {
+        btn.className = "flex items-center space-x-1.5 px-2.5 py-1 rounded-full bg-[#1b1e27] hover:bg-[#252a34] border border-white/10 text-xs text-gray-300 hover:text-white transition shadow";
+        icon.className = "fa-regular fa-star text-amber-400";
+        text.innerText = "Save Location";
+        btn.title = "Save this location to favorites";
+      }
+    }
+
+    function renderSavedLocationsTray() {
+      const container = document.getElementById('saved-locations-chips-container');
+      if (!container) return;
+
+      if (savedLocations.length === 0) {
+        container.innerHTML = '<span class="text-gray-500 text-[10px] italic">No saved sites yet.</span>';
+        return;
+      }
+
+      let html = '';
+      savedLocations.forEach(loc => {
+        const isActive = (loc.name.toLowerCase() === currentCity.toLowerCase());
+        const chipClass = isActive
+          ? "bg-blue-600 text-white font-bold border-blue-400"
+          : "bg-[#181b23] text-gray-300 hover:text-white hover:bg-[#222733] border-white/10";
+
+        html += `
+          <button onclick="switchToSavedLocation('${loc.name}', ${loc.lat}, ${loc.lon})"
+                  class="px-2.5 py-0.5 rounded-full border text-[10px] flex items-center space-x-1 flex-shrink-0 transition shadow-sm ${chipClass}">
+            <span>${loc.is_default ? '⭐' : '📍'}</span>
+            <span class="truncate max-w-[110px]">${loc.display_name.split(',')[0]}</span>
+          </button>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderModalSavedChips() {
+      const container = document.getElementById('modal-saved-chips');
+      if (!container) return;
+
+      if (savedLocations.length === 0) {
+        container.innerHTML = '<span class="text-gray-500 text-[10px] italic">No saved locations yet.</span>';
+        return;
+      }
+
+      let html = '';
+      savedLocations.forEach(loc => {
+        html += `
+          <button onclick="switchToSavedLocation('${loc.name}', ${loc.lat}, ${loc.lon}); closeCityPicker();"
+                  class="px-2 py-0.5 rounded-lg bg-[#181b23] hover:bg-blue-900/60 border border-white/10 text-gray-200 text-[10px] font-mono flex items-center space-x-1 transition">
+            <span class="text-amber-400">${loc.is_default ? '★' : '•'}</span>
+            <span>${loc.display_name}</span>
+          </button>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderSavedLocationsModalList() {
+      const container = document.getElementById('saved-locations-list-container');
+      if (!container) return;
+
+      if (savedLocations.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-6 text-gray-400">
+            <i class="fa-solid fa-bookmark text-2xl text-gray-600 mb-2"></i>
+            <p>No saved agricultural sites found.</p>
+            <p class="text-[10px] text-gray-500">Pick any location on the map or selector and save it.</p>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      savedLocations.forEach(loc => {
+        const isActive = (loc.name.toLowerCase() === currentCity.toLowerCase());
+        html += `
+          <div class="p-3 rounded-2xl bg-[#161922] border ${isActive ? 'border-blue-500/50 bg-blue-950/20' : 'border-white/5'} flex items-center justify-between space-x-2 transition">
+            <div class="flex-1 min-w-0">
+              <div class="flex items-center space-x-1.5">
+                <span class="font-bold text-white text-xs truncate">${loc.display_name}</span>
+                ${loc.is_default ? '<span class="px-1.5 py-0.2 rounded bg-amber-950 text-amber-300 border border-amber-600/40 text-[9px] font-mono font-bold">Default</span>' : ''}
+                ${isActive ? '<span class="px-1.5 py-0.2 rounded bg-blue-950 text-blue-300 border border-blue-600/40 text-[9px] font-mono">Active</span>' : ''}
+              </div>
+              <div class="text-[10px] text-gray-400 font-mono mt-0.5">
+                <span>${loc.province}</span> · <span>${loc.lat.toFixed(4)}°N, ${loc.lon.toFixed(4)}°E</span>
+              </div>
+              ${loc.notes ? `<p class="text-[10px] text-amber-200/80 italic mt-0.5">${loc.notes}</p>` : ''}
+            </div>
+
+            <div class="flex items-center space-x-1.5 flex-shrink-0">
+              <button onclick="switchToSavedLocation('${loc.name}', ${loc.lat}, ${loc.lon}); closeSavedLocationsModal();"
+                      class="px-2.5 py-1 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-[10px] transition shadow flex items-center space-x-1">
+                <i class="fa-solid fa-location-arrow text-[9px]"></i>
+                <span>Load</span>
+              </button>
+              ${!loc.is_default ? `
+                <button onclick="setDefaultSavedLocation(${loc.id})" title="Set as default location"
+                        class="px-2 py-1 rounded-xl bg-white/5 hover:bg-white/10 text-amber-400 hover:text-amber-300 border border-white/5 text-[10px] transition">
+                  <i class="fa-regular fa-star"></i>
+                </button>
+              ` : ''}
+              <button onclick="deleteSavedLocation(${loc.id}, '${loc.name}')" title="Delete location"
+                      class="w-6 h-6 rounded-lg bg-white/5 hover:bg-rose-950/80 text-gray-400 hover:text-rose-400 border border-white/5 flex items-center justify-center text-[10px] transition">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    async function toggleSaveCurrentLocation() {
+      if (isLocationSaved(currentCity, currentLat, currentLon)) {
+        openSavedLocationsModal();
+        return;
+      }
+
+      const disp = (latestData && latestData.display_name) ? latestData.display_name : (currentCity.charAt(0).toUpperCase() + currentCity.slice(1));
+      const prov = currentProvince || "Punjab";
+
+      try {
+        const resp = await fetch('/api/saved-locations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: currentCity,
+            display_name: disp,
+            province: prov,
+            lat: currentLat,
+            lon: currentLon,
+            is_default: savedLocations.length === 0 ? 1 : 0,
+            notes: "Saved via web GUI"
+          })
+        });
+        const d = await resp.json();
+        if (d.saved_locations) savedLocations = d.saved_locations;
+        showToast(`✓ Location saved: ${disp}`);
+      } catch (e) {
+        showToast(`✓ Location saved: ${disp}`);
+      }
+
+      await loadSavedLocations();
+    }
+
+    async function saveCurrentLocationWithLabel() {
+      const input = document.getElementById('save-custom-label-input');
+      const customLabel = input ? input.value.trim() : "";
+      const disp = customLabel || (latestData && latestData.display_name) || (currentCity.charAt(0).toUpperCase() + currentCity.slice(1));
+      const prov = currentProvince || "Punjab";
+
+      try {
+        const resp = await fetch('/api/saved-locations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: currentCity,
+            display_name: disp,
+            province: prov,
+            lat: currentLat,
+            lon: currentLon,
+            is_default: 0,
+            notes: customLabel ? `Custom Farm: ${customLabel}` : "Saved via web GUI"
+          })
+        });
+        const d = await resp.json();
+        if (d.saved_locations) savedLocations = d.saved_locations;
+      } catch (e) {}
+
+      if (input) input.value = "";
+      showToast(`✓ Location saved: ${disp}`);
+      await loadSavedLocations();
+      renderSavedLocationsModalList();
+    }
+
+    async function applyAndSaveModalLocation() {
+      const cityKey = document.getElementById('city-select').value;
+      const makeDefault = document.getElementById('modal-set-default-check').checked;
+      closeCityPicker();
+
+      let disp = cityKey;
+      let lat = currentLat;
+      let lon = currentLon;
+      let prov = currentProvince;
+
+      if (pakistanData[prov] && pakistanData[prov].cities && pakistanData[prov].cities[cityKey]) {
+        const c = pakistanData[prov].cities[cityKey];
+        disp = `${c.name}, ${prov}`;
+        lat = c.lat;
+        lon = c.lon;
+      }
+
+      try {
+        await fetch('/api/saved-locations', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: cityKey,
+            display_name: disp,
+            province: prov,
+            lat: lat,
+            lon: lon,
+            is_default: makeDefault ? 1 : 0,
+            notes: makeDefault ? "Default farm hub" : "Selected in province picker"
+          })
+        });
+      } catch (e) {}
+
+      showToast(`✓ Location saved: ${disp}`);
+      await loadSavedLocations();
+      selectCity(cityKey);
+    }
+
+    async function switchToSavedLocation(locName, lat, lon) {
+      currentCity = locName.toLowerCase();
+      if (lat !== undefined && lon !== undefined) {
+        currentLat = lat;
+        currentLon = lon;
+      }
+
+      clearSearch();
+      showToast(`📍 Loading details for ${locName.charAt(0).toUpperCase() + locName.slice(1)}...`);
+      await queryPrediction(locName, lat, lon);
+      renderSavedLocationsTray();
+      renderSavedLocationsModalList();
+    }
+
+    async function deleteSavedLocation(id, name) {
+      try {
+        const resp = await fetch(`/api/saved-locations/delete?id=${id}&name=${encodeURIComponent(name)}`);
+        const d = await resp.json();
+        if (d.saved_locations) savedLocations = d.saved_locations;
+      } catch (e) {
+        savedLocations = savedLocations.filter(l => l.id !== id && l.name !== name);
+      }
+      showToast(`Removed from saved locations.`);
+      await loadSavedLocations();
+      renderSavedLocationsModalList();
+    }
+
+    async function setDefaultSavedLocation(id) {
+      try {
+        const resp = await fetch(`/api/saved-locations/default?id=${id}`);
+        const d = await resp.json();
+        if (d.saved_locations) savedLocations = d.saved_locations;
+      } catch (e) {
+        savedLocations.forEach(l => l.is_default = (l.id === id));
+      }
+      showToast(`✓ Set as primary default location.`);
+      await loadSavedLocations();
+      renderSavedLocationsModalList();
+    }
+
+    window.onload = async function() {
       startClock();
       initMap();
-      loadProvinces();
-      queryPrediction('chakwal');
+
+      // Temperature Unit (Default: Celsius)
+      try {
+        const storedUnit = localStorage.getItem('fieldshift_temp_unit');
+        useFahrenheit = (storedUnit === 'F');
+        const unitBtn = document.getElementById('temp-unit-toggle');
+        if (unitBtn) unitBtn.innerText = useFahrenheit ? '°F' : '°C';
+      } catch (e) {}
+
+      await loadProvinces();
+      await loadSavedLocations();
+
+      let initialStation = "chakwal";
+      let initialLat = null;
+      let initialLon = null;
+
+      const defaultLoc = savedLocations.find(l => l.is_default);
+      if (defaultLoc) {
+        initialStation = defaultLoc.name;
+        initialLat = defaultLoc.lat;
+        initialLon = defaultLoc.lon;
+      } else if (savedLocations.length > 0) {
+        initialStation = savedLocations[0].name;
+        initialLat = savedLocations[0].lat;
+        initialLon = savedLocations[0].lon;
+      }
+
+      queryPrediction(initialStation, initialLat, initialLon);
     };
   </script>
 </body>
@@ -2103,6 +2580,115 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(stats).encode("utf-8"))
             return
 
+        elif path == "/api/saved-locations":
+            locs = get_user_saved_locations()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps(locs).encode("utf-8"))
+            return
+
+        elif path == "/api/saved-locations/save":
+            name = query.get("name", [""])[0]
+            display_name = query.get("display_name", [name.title()])[0]
+            province = query.get("province", ["Punjab"])[0]
+            try:
+                lat = float(query.get("lat", [32.9328])[0])
+                lon = float(query.get("lon", [72.8631])[0])
+            except (ValueError, TypeError):
+                lat, lon = 32.9328, 72.8631
+            is_default = 1 if query.get("is_default", ["0"])[0] in ["1", "true", "True"] else 0
+            notes = query.get("notes", [""])[0]
+            updated = save_user_location(name, display_name, province, lat, lon, is_default, notes)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
+
+        elif path == "/api/saved-locations/delete":
+            loc_id = query.get("id", [None])[0]
+            loc_name = query.get("name", [None])[0]
+            updated = delete_user_saved_location(location_id=loc_id, name=loc_name)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
+
+        elif path == "/api/saved-locations/default":
+            target = query.get("id", query.get("name", [None]))[0]
+            updated = set_default_saved_location(target)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
+
+        else:
+            self.send_response(404)
+            self.end_headers()
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, DELETE, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+        self.end_headers()
+
+    def do_POST(self):
+        parsed = urlparse(self.path)
+        path = parsed.path
+        content_length = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(content_length).decode('utf-8') if content_length > 0 else ""
+        try:
+            payload = json.loads(body) if body else {}
+        except Exception:
+            payload = {}
+
+        if path == "/api/saved-locations":
+            name = payload.get("name", "")
+            display_name = payload.get("display_name", name.title())
+            province = payload.get("province", "Punjab")
+            try:
+                lat = float(payload.get("lat", 32.9328))
+                lon = float(payload.get("lon", 72.8631))
+            except (ValueError, TypeError):
+                lat, lon = 32.9328, 72.8631
+            is_default = 1 if payload.get("is_default") else 0
+            notes = payload.get("notes", "")
+            updated = save_user_location(name, display_name, province, lat, lon, is_default, notes)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
+
+        elif path == "/api/saved-locations/delete":
+            loc_id = payload.get("id")
+            loc_name = payload.get("name")
+            updated = delete_user_saved_location(location_id=loc_id, name=loc_name)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
+
+        elif path == "/api/saved-locations/default":
+            target = payload.get("id", payload.get("name"))
+            updated = set_default_saved_location(target)
+            self.send_response(200)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Access-Control-Allow-Origin", "*")
+            self.end_headers()
+            self.wfile.write(json.dumps({"success": True, "saved_locations": updated}).encode("utf-8"))
+            return
 
         else:
             self.send_response(404)

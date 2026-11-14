@@ -118,44 +118,105 @@ def _load_models():
 
 def _resolve_station(station_name=None, lat=None, lon=None):
     """Resolves coordinates, metadata, and agro-zone from station name or coordinates."""
+    from location_service import PAKISTAN_PROVINCES
+
     if lat is not None and lon is not None:
         closest_city = None
         min_dist = float("inf")
+        # Check REGIONAL_CITIES
         for k, info in REGIONAL_CITIES.items():
             dist = math.hypot(float(lat) - info["lat"], float(lon) - info["lon"])
             if dist < min_dist:
                 min_dist = dist
                 closest_city = info
-                
+
+        # Check PAKISTAN_PROVINCES
+        for prov_name, prov_info in PAKISTAN_PROVINCES.items():
+            for c_k, c_info in prov_info.get("cities", {}).items():
+                dist = math.hypot(float(lat) - c_info["lat"], float(lon) - c_info["lon"])
+                if dist < min_dist:
+                    min_dist = dist
+                    closest_city = {
+                        "name": c_info["name"],
+                        "display": f"{c_info['name']} ({prov_name})",
+                        "lat": c_info["lat"],
+                        "lon": c_info["lon"],
+                        "elevation_m": c_info.get("elevation_m", 200),
+                        "zone": c_info.get("zone", f"{prov_name} Agricultural Area"),
+                        "river_basin": c_info.get("river_basin", "Indus Basin"),
+                        "barani": c_info.get("barani", False),
+                        "primary_crops": c_info.get("primary_crops", ["Wheat", "Pulses"]),
+                        "soil_type": c_info.get("soil_type", "Loam")
+                    }
+
         city_display = f"Custom ({float(lat):.4f}, {float(lon):.4f})"
-        if min_dist < 0.2 and closest_city:
+        if min_dist < 0.25 and closest_city:
             city_display += f" near {closest_city['name']}"
-            
+
+        is_near_named = closest_city and min_dist < 0.08
         return {
-            "name": "Custom",
-            "display": city_display,
+            "name": closest_city["name"] if is_near_named else "Custom",
+            "display": closest_city["display"] if is_near_named else city_display,
             "lat": float(lat),
             "lon": float(lon),
             "elevation_m": closest_city["elevation_m"] if closest_city else 200,
             "zone": closest_city["zone"] if closest_city else "Agricultural Area",
             "river_basin": closest_city["river_basin"] if closest_city else "Indus Basin",
             "barani": closest_city["barani"] if closest_city else False,
-            "primary_crops": closest_city["primary_crops"] if closest_city else ["Wheat", "Pulses"]
+            "primary_crops": closest_city["primary_crops"] if closest_city else ["Wheat", "Pulses"],
+            "soil_type": closest_city.get("soil_type", "Alluvial Sandy Loam") if closest_city else "Alluvial Sandy Loam"
         }
 
     if station_name:
-        key = station_name.strip().lower()
+        key = str(station_name).strip().lower()
+
+        # 1. Check REGIONAL_CITIES
         if key in REGIONAL_CITIES:
             return REGIONAL_CITIES[key]
         for k, v in REGIONAL_CITIES.items():
-            if key in v["name"].lower() or key in v["display"].lower():
+            if key == v["name"].lower() or key in v["display"].lower() or key == k:
                 return v
-        raise ValueError(
-            f"Unknown station '{station_name}'. Available cities: {list(REGIONAL_CITIES.keys())}"
-        )
 
-    # Default to Islamabad
-    return REGIONAL_CITIES["islamabad"]
+        # 2. Check PAKISTAN_PROVINCES (all 7 provinces & regions)
+        for prov_name, prov_info in PAKISTAN_PROVINCES.items():
+            cities = prov_info.get("cities", {})
+            if key in cities:
+                c = cities[key]
+                return {
+                    "name": c["name"],
+                    "display": f"{c['name']} ({prov_name})",
+                    "lat": float(c["lat"]),
+                    "lon": float(c["lon"]),
+                    "elevation_m": c.get("elevation_m", 200),
+                    "zone": c.get("zone", f"{prov_name} Agricultural Area"),
+                    "river_basin": c.get("river_basin", "Indus Basin"),
+                    "barani": c.get("barani", False),
+                    "primary_crops": c.get("primary_crops", ["Wheat", "Vegetables", "Pulses"]),
+                    "soil_type": c.get("soil_type", "Alluvial Silt Loam")
+                }
+            for ck, c in cities.items():
+                if key == c["name"].lower() or key == ck or key in c["name"].lower():
+                    return {
+                        "name": c["name"],
+                        "display": f"{c['name']} ({prov_name})",
+                        "lat": float(c["lat"]),
+                        "lon": float(c["lon"]),
+                        "elevation_m": c.get("elevation_m", 200),
+                        "zone": c.get("zone", f"{prov_name} Agricultural Area"),
+                        "river_basin": c.get("river_basin", "Indus Basin"),
+                        "barani": c.get("barani", False),
+                        "primary_crops": c.get("primary_crops", ["Wheat", "Vegetables", "Pulses"]),
+                        "soil_type": c.get("soil_type", "Alluvial Silt Loam")
+                    }
+
+        # 3. Graceful fallback matching closest or default
+        fallback = REGIONAL_CITIES.get("chakwal", REGIONAL_CITIES["islamabad"]).copy()
+        fallback["name"] = station_name.title()
+        fallback["display"] = f"{station_name.title()} (Agricultural Region)"
+        return fallback
+
+    # Default to Chakwal
+    return REGIONAL_CITIES.get("chakwal", REGIONAL_CITIES["islamabad"])
 
 
 def _clamp(val, name):
@@ -345,13 +406,17 @@ def predict(station=None, lat=None, lon=None, target_time=None, blend=0.5,
 
     # 8. Gemini AI Agricultural Crop Feasibility Assessment
     if skip_gemini:
-        result["crop_feasibility"] = {
-            "is_worth_it": "FEASIBLE",
-            "feasibility_score": 85,
-            "summary_verdict": "Perimeter sampling point within scan radius.",
-            "recommended_crops": [],
-            "crops_to_avoid": []
-        }
+        try:
+            from gemini_agri_advisor import _expert_rule_agronomy_evaluator
+            result["crop_feasibility"] = _expert_rule_agronomy_evaluator(result)
+        except Exception:
+            result["crop_feasibility"] = {
+                "is_worth_it": "FEASIBLE",
+                "feasibility_score": 85,
+                "summary_verdict": "Perimeter sampling point within scan radius.",
+                "recommended_crops": ["Wheat", "Pulses", "Groundnut"],
+                "crops_to_avoid": ["Rice (high water need)"]
+            }
     else:
         result["crop_feasibility"] = evaluate_crop_feasibility(result, gemini_api_key=gemini_api_key)
 

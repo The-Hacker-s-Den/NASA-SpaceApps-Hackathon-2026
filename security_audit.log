@@ -434,3 +434,77 @@
 [2026-11-14T17:01:37.825959Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
 [2026-11-14T17:01:45.866217Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
 [2026-11-14T17:01:50.375980Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: afb67644...)
+[2026-11-14T17:27:33.286988Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:28:01.375930Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:28:04.069816Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: ce3d9077...)
+[2026-11-14T17:28:46.593409Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:28:49.853255Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: cacc1347...)
+[2026-11-14T17:39:40.120178Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:39:40.121741Z] [INFO] [TAMPER_DETECTED] HMAC mismatch: Database record modified by external process!
+[2026-11-14T17:39:40.122161Z] [INFO] [DECRYPTION_ERROR] Integrity check failed: Record has been tampered with!
+[2026-11-14T17:40:09.445578Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:40:09.446934Z] [INFO] [TAMPER_DETECTED] HMAC mismatch: Database record modified by external process!
+[2026-11-14T17:40:09.447327Z] [INFO] [DECRYPTION_ERROR] Integrity check failed: Record has been tampered with!
+[2026-11-14T17:40:34.500104Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:40:34.501308Z] [INFO] [TAMPER_DETECTED] HMAC mismatch: Database record modified by external process!
+[2026-11-14T17:40:34.501745Z] [INFO] [DECRYPTION_ERROR] Integrity check failed: Record has been tampered with!
+[2026-11-14T17:40:39.131325Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:40:39.132593Z] [INFO] [TAMPER_DETECTED] HMAC mismatch: Database record modified by external process!
+[2026-11-14T17:40:39.133001Z] [INFO] [DECRYPTION_ERROR] Integrity check failed: Record has been tampered with!
+[2026-11-14T17:40:44.383051Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:40:44.384523Z] [INFO] [TAMPER_DETECTED] HMAC mismatch: Database record modified by external process!
+[2026-11-14T17:40:44.384994Z] [INFO] [DECRYPTION_ERROR] Integrity check failed: Record has been tampered with!
+[2026-11-14T17:41:33.434866Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:10.756574Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:10.758780Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:10.764983Z] [INFO] [LOCATION_SAVED] Saved location 'Faisalabad Agro Research Plot' (31.4504, 73.135)
+[2026-11-14T17:47:10.767868Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:14.255071Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:15.613886Z] [INFO] [RECORD_SAVED] Securely stored assessment for Faisalabad, Pakistan (Hash: c4b63b66...)
+[2026-11-14T17:47:24.711822Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:24.717331Z] [INFO] [LOCATION_DELETED] Deleted saved location id=None name=faisalabad
+[2026-11-14T17:47:24.719362Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:47:24.720240Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:05.043866Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:07.129306Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:17.712707Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:21.252463Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: d1a00660...)
+[2026-11-14T17:50:23.396440Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:27.424905Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: 74851d15...)
+[2026-11-14T17:50:27.449254Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:27.478129Z] [INFO] [LOCATION_SAVED] Saved location 'Islamabad, Islamabad Capital Territory' (33.6844, 73.0479)
+[2026-11-14T17:50:27.490906Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:30.125098Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:33.708097Z] [INFO] [RECORD_SAVED] Securely stored assessment for Gilgit, Pakistan (Hash: ab0da4f4...)
+[2026-11-14T17:50:33.725052Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:33.732700Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:33.746332Z] [INFO] [LOCATION_SAVED] Saved location 'Gilgit, Gilgit-Baltistan' (35.9221, 74.3087)
+[2026-11-14T17:50:33.753160Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:34.291392Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:36.627197Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: 74851d15...)
+[2026-11-14T17:50:36.632602Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:37.214716Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:50:38.833823Z] [INFO] [RECORD_SAVED] Securely stored assessment for Gilgit, Pakistan (Hash: ab0da4f4...)
+[2026-11-14T17:53:46.632379Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:53:47.185697Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:53:48.451051Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: dc935006...)
+[2026-11-14T17:55:59.473654Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:00.943932Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: d9d5f1ff...)
+[2026-11-14T17:56:05.942818Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:07.530694Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: 58166d0d...)
+[2026-11-14T17:56:09.798981Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:11.291764Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: 925d0518...)
+[2026-11-14T17:56:15.318359Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:18.632912Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: ec9e9d8b...)
+[2026-11-14T17:56:22.638577Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:25.393437Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: 718508e8...)
+[2026-11-14T17:56:28.476426Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:30.128694Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: d76316be...)
+[2026-11-14T17:56:33.924225Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:56:35.248768Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: cda4bc54...)
+[2026-11-14T17:58:09.743669Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:58:11.201382Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:58:21.037992Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:58:22.646763Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: b4072c0a...)
+[2026-11-14T17:58:33.928432Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T17:58:36.680530Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: dd51bccf...)

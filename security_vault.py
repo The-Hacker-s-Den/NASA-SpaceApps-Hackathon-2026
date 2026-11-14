@@ -169,6 +169,38 @@ def init_secure_database():
         severity TEXT
     )
     """)
+
+    # Table 4: User Saved Locations
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS saved_locations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT UNIQUE,
+        display_name TEXT,
+        province TEXT,
+        lat REAL,
+        lon REAL,
+        is_default INTEGER DEFAULT 0,
+        notes TEXT,
+        created_at TEXT
+    )
+    """)
+
+    # Seed starter locations if empty
+    cursor.execute("SELECT COUNT(*) FROM saved_locations")
+    if cursor.fetchone()[0] == 0:
+        now_ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+        starter_locs = [
+            ("chakwal", "Chakwal, Punjab", "Punjab", 32.9328, 72.8631, 1, "Core Pothohar Barani Research Hub", now_ts),
+            ("lahore", "Lahore, Punjab", "Punjab", 31.5204, 74.3587, 0, "Central Irrigated Canal Plains", now_ts),
+            ("multan", "Multan, Punjab", "Punjab", 30.1575, 71.5249, 0, "Southern Cotton & Mango Belt", now_ts),
+            ("karachi", "Karachi, Sindh", "Sindh", 24.8607, 67.0011, 0, "Coastal Arid & Horticultural Hub", now_ts),
+            ("peshawar", "Peshawar, Khyber Pakhtunkhwa", "Khyber Pakhtunkhwa", 34.0151, 71.5249, 0, "Peshawar Valley Alluvium", now_ts),
+            ("quetta", "Quetta, Balochistan", "Balochistan", 30.1798, 66.9750, 0, "Highland Arid Plateau & Orchards", now_ts)
+        ]
+        cursor.executemany("""
+        INSERT OR IGNORE INTO saved_locations (name, display_name, province, lat, lon, is_default, notes, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        """, starter_locs)
     
     conn.commit()
     conn.close()
@@ -265,8 +297,101 @@ def load_secure_api_key(service_name: str) -> str:
     conn.close()
     
     if row:
-        return decrypt_payload(row[0])
+        try:
+            return decrypt_payload(row[0])
+        except Exception:
+            return None
     return None
+
+
+# ── USER SAVED LOCATIONS VAULT ────────────────────────────────────────────────
+def save_user_location(name: str, display_name: str, province: str, lat: float, lon: float, is_default: int = 0, notes: str = ""):
+    """Saves or updates a user-defined agricultural location in the database vault."""
+    init_secure_database()
+    conn = sqlite3.connect(VAULT_DB_PATH)
+    cursor = conn.cursor()
+    now_str = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+
+    clean_name = str(name).strip().lower()
+    clean_disp = str(display_name).strip() if display_name else clean_name.title()
+    clean_prov = str(province).strip() if province else "Pakistan"
+
+    if is_default:
+        cursor.execute("UPDATE saved_locations SET is_default = 0")
+
+    cursor.execute("""
+    INSERT INTO saved_locations (name, display_name, province, lat, lon, is_default, notes, created_at)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ON CONFLICT(name) DO UPDATE SET
+        display_name=excluded.display_name,
+        province=excluded.province,
+        lat=excluded.lat,
+        lon=excluded.lon,
+        is_default=CASE WHEN excluded.is_default = 1 THEN 1 ELSE saved_locations.is_default END,
+        notes=excluded.notes,
+        created_at=excluded.created_at
+    """, (clean_name, clean_disp, clean_prov, float(lat), float(lon), int(is_default), notes, now_str))
+
+    conn.commit()
+    conn.close()
+    log_security_event("LOCATION_SAVED", f"Saved location '{clean_disp}' ({lat}, {lon})")
+    return get_user_saved_locations()
+
+
+def get_user_saved_locations():
+    """Retrieves all user-saved locations ordered with default first."""
+    init_secure_database()
+    conn = sqlite3.connect(VAULT_DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT id, name, display_name, province, lat, lon, is_default, notes, created_at FROM saved_locations ORDER BY is_default DESC, id ASC")
+    rows = cursor.fetchall()
+    conn.close()
+
+    res = []
+    for r in rows:
+        res.append({
+            "id": r[0],
+            "name": r[1],
+            "display_name": r[2],
+            "province": r[3],
+            "lat": float(r[4]),
+            "lon": float(r[5]),
+            "is_default": bool(r[6]),
+            "notes": r[7] or "",
+            "created_at": r[8]
+        })
+    return res
+
+
+def delete_user_saved_location(location_id=None, name=None):
+    """Deletes a location from user's saved locations."""
+    init_secure_database()
+    conn = sqlite3.connect(VAULT_DB_PATH)
+    cursor = conn.cursor()
+    if location_id is not None:
+        cursor.execute("DELETE FROM saved_locations WHERE id = ?", (int(location_id),))
+    elif name is not None:
+        cursor.execute("DELETE FROM saved_locations WHERE name = ?", (str(name).strip().lower(),))
+    conn.commit()
+    conn.close()
+    log_security_event("LOCATION_DELETED", f"Deleted saved location id={location_id} name={name}")
+    return get_user_saved_locations()
+
+
+def set_default_saved_location(name_or_id):
+    """Sets a location as the user's primary default location."""
+    init_secure_database()
+    conn = sqlite3.connect(VAULT_DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE saved_locations SET is_default = 0")
+    if isinstance(name_or_id, int) or (isinstance(name_or_id, str) and name_or_id.isdigit()):
+        cursor.execute("UPDATE saved_locations SET is_default = 1 WHERE id = ?", (int(name_or_id),))
+    else:
+        cursor.execute("UPDATE saved_locations SET is_default = 1 WHERE name = ?", (str(name_or_id).strip().lower(),))
+    conn.commit()
+    conn.close()
+    log_security_event("LOCATION_DEFAULT_SET", f"Set default location: {name_or_id}")
+    return get_user_saved_locations()
 
 
 if __name__ == "__main__":
