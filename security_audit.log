@@ -1,0 +1,218 @@
+[2026-11-14T13:30:08.664487Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:30:08.692196Z] [INFO] [SESSION_CREATED] Issued session for Evaluator-01 with role NASA Evaluator
+[2026-11-14T13:31:09.470617Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:31:09.503504Z] [INFO] [SESSION_CREATED] Issued session for CLI-Operator with role Agronomist
+[2026-11-14T13:31:10.014973Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:31:14.047953Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:31:15.820483Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Islamabad Capital Territory (Hash: d4c91a90...)
+[2026-11-14T13:33:46.551173Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.329863Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.377903Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.423255Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.482176Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.532507Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.578170Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.627850Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.697733Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.750031Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.756729Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:33:57.760603Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:34:01.743471Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: ad43b85f...)
+[2026-11-14T13:34:12.181385Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:34:12.240974Z] [INFO] [API_KEY_SECURED] Encrypted and stored API key for 'gemini'
+[2026-11-14T13:34:12.246364Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:34:12.278725Z] [INFO] [API_KEY_SECURED] Encrypted and stored API key for 'google_maps'
+[2026-11-14T13:34:12.287694Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:34:12.316982Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:34:32.577689Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:26.400556Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:26.570631Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:26.801887Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:26.917770Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:27.208326Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:27.341123Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:27.565204Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:27.700689Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:28.003673Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:28.046949Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:28.077790Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:31.548837Z] [INFO] [RECORD_SAVED] Securely stored assessment for Rawalpindi, Pakistan (Hash: d2c4252c...)
+[2026-11-14T13:35:32.383990Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:32.516667Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:32.807761Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.080476Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.225459Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.429044Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.558937Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.670451Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.916880Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:33.969043Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:34.014528Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:39.067724Z] [INFO] [RECORD_SAVED] Securely stored assessment for Rawalpindi, Pakistan (Hash: d2c4252c...)
+[2026-11-14T13:35:40.303816Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:40.432010Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:40.563414Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:40.705747Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:40.804692Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:40.913778Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:41.082457Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:41.262907Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:41.441751Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:41.481646Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:41.522879Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:35:46.038682Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 00a968b2...)
+[2026-11-14T13:36:21.551409Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:21.685743Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:21.788058Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:21.917671Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.016051Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.152238Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.303319Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.451169Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.551373Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:22.598980Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:27.825098Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 017b94a8...)
+[2026-11-14T13:36:28.199550Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:28.491964Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:28.618202Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:29.534252Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:29.992965Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:30.361504Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:30.742872Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:31.265228Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:31.550624Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:31.591354Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:35.915177Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 017b94a8...)
+[2026-11-14T13:36:36.220055Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:36.403721Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:36.604406Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:36.882277Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:37.454730Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:37.756577Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:37.964573Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:38.222016Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:38.353476Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:38.394137Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:36:43.909209Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 017b94a8...)
+[2026-11-14T13:37:01.255464Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:01.595002Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.225371Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.347697Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.448228Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.538455Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.631543Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.718736Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.821576Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:02.864026Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:06.452188Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: 8b6e1bd8...)
+[2026-11-14T13:37:14.250047Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:25.506651Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:37:57.531635Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:11.015860Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:14.933467Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.095553Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.203344Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.456219Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.714002Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.844272Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:15.927959Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:16.018752Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:16.097280Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:16.137935Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:18.973379Z] [INFO] [RECORD_SAVED] Securely stored assessment for Islamabad, Pakistan (Hash: 0c8ac3ef...)
+[2026-11-14T13:38:23.675483Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:34.087770Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:46.689222Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:38:58.046522Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:39:13.179722Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:39:29.615449Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:39:41.069365Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:39:42.603350Z] [INFO] [RECORD_SAVED] Securely stored assessment for Kharian, Pakistan (Hash: af8cfa60...)
+[2026-11-14T13:44:08.360619Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:08.555361Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:08.686904Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:08.818854Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:08.915728Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:09.079895Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:09.210354Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:09.382911Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:09.484059Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:09.518163Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:13.003582Z] [INFO] [RECORD_SAVED] Securely stored assessment for Chakwal, Pakistan (Hash: 10d275ba...)
+[2026-11-14T13:44:25.999977Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:26.658434Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:26.943763Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:27.499758Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:28.556960Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:29.087448Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:29.660323Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:30.249649Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:31.016644Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:31.059173Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:36.743100Z] [INFO] [RECORD_SAVED] Securely stored assessment for Kharian, Pakistan (Hash: 673de490...)
+[2026-11-14T13:44:37.896613Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:38.304231Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:38.852298Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:39.008552Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:39.469015Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:39.803887Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:39.966360Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:40.328361Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:40.489884Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:40.532109Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:46.574382Z] [INFO] [RECORD_SAVED] Securely stored assessment for Rawalpindi, Pakistan (Hash: 2c5ad25b...)
+[2026-11-14T13:44:51.836729Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:52.157248Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:52.708871Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:53.150281Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:53.311664Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:54.388642Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:55.085458Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:55.524527Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:57.389321Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:44:57.433801Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:02.708494Z] [INFO] [RECORD_SAVED] Securely stored assessment for Custom, Pakistan (Hash: c86e19fd...)
+[2026-11-14T13:45:03.671478Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:04.016241Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:05.880543Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:06.524110Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:06.686625Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:07.136765Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:07.304679Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:07.462832Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:07.957722Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:08.008027Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:12.698889Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 0d23fda7...)
+[2026-11-14T13:45:13.744649Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:13.856210Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:13.963102Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:14.066245Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:14.395392Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:14.585045Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:14.910501Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:15.045786Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:15.248272Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:15.284385Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:19.216998Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: b2ae1d1f...)
+[2026-11-14T13:45:19.569912Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:19.900730Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.062102Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.196188Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.307508Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.412102Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.517036Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.620289Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.725975Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:20.759869Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:24.932412Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: 6735c592...)
+[2026-11-14T13:45:25.164060Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.256422Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.369504Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.470181Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.594332Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.773500Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:25.901934Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:26.005713Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:26.155905Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:26.190123Z] [INFO] [DATABASE_INITIALIZED] Encrypted SQLite Vault verified & online
+[2026-11-14T13:45:30.061694Z] [INFO] [RECORD_SAVED] Securely stored assessment for Jhelum, Pakistan (Hash: ea54aca0...)

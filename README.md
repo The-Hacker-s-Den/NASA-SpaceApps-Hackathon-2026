@@ -67,9 +67,10 @@ NASA-SpaceApps-Hackathon-2026/
 ├── train_weather_ai.py          # Complete training pipeline (trains PyTorch & GBM models)
 ├── predict_weather.py           # CLI and Python API for future weather forecasting
 ├── test_weather_predictions.py  # Unit & physical sanity tests
-├── weather_training_dataset.csv # Downloaded 11,684 records (2022-2024 at 6h intervals)
-├── prithvi_weather_net.pt       # Trained PyTorch neural network checkpoint
-├── weather_gbm_ensemble.pkl     # Trained Gradient Boosted regressor models
+├── weather_training_dataset_2010_2026.csv # 17,115 observations (2010 to 2026)
+├── islamabad_weather_Date_14_11_2026_Time_15_09_20.csv # Islamabad 2010-2026 (6,162 daily records)
+├── prithvi_weather_net.pt       # Trained PyTorch neural network checkpoint (2010-2026)
+├── weather_gbm_ensemble.pkl     # Trained Gradient Boosted regressor models (2010-2026)
 └── weather_model_metadata.json  # Model configuration, features, and evaluation metrics
 ```
 
@@ -130,17 +131,17 @@ print("Pressure:", result["forecast"]["pressure_hpa"], "hPa")
 
 ---
 
-## 📊 Model Evaluation Performance
+## 📊 Model Evaluation Performance (2010–2026 Training)
 
-Evaluated on an independent holdout test set (2,337 samples):
+Evaluated on an independent holdout test set (3,423 samples from 2010 to 2026):
 
 | Weather Parameter | Mean Absolute Error (MAE) | Root Mean Squared Error (RMSE) | $R^2$ Score |
 | :--- | :--- | :--- | :--- |
-| **Temperature (°C)** | **1.01 °C** | **1.36 °C** | **0.979** |
-| **Sea Level Pressure (hPa)** | **0.87 hPa** | **1.13 hPa** | **0.974** |
-| **Relative Humidity (%)** | **5.90 %** | **8.07 %** | **0.851** |
-| **Wind Speed (m/s)** | **0.72 m/s** | **1.02 m/s** | **0.364** |
-| **Precipitation (mm/h)** | **0.15 mm** | **0.48 mm** | **0.105** |
+| **Temperature (°C)** | **1.21 °C** | **1.60 °C** | **0.968** |
+| **Sea Level Pressure (hPa)** | **1.29 hPa** | **1.77 hPa** | **0.935** |
+| **Relative Humidity (%)** | **6.97 %** | **9.29 %** | **0.803** |
+| **Wind Speed (m/s)** | **0.69 m/s** | **1.01 m/s** | **0.325** |
+| **Precipitation (mm/h)** | **0.17 mm** | **0.50 mm** | **0.048** |
 
 ---
 
