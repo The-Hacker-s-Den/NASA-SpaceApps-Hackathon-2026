@@ -149,22 +149,42 @@ NASA-SpaceApps-Hackathon-2026/
 
 ## 🚀 How to Run the Application
 
-### 1. Prerequisites
-Ensure Python 3.11+ is installed. Activate the project virtual environment:
-```powershell
-# Windows PowerShell (from the project root)
-.\prithvi-env\Scripts\Activate.ps1
-```
+### Option A: One-Click Launcher (Easiest)
+Simply double-click or execute the launcher script in the project root:
+- **Windows**: Double-click `run.bat` (or run `./run.bat` in Command Prompt)
+- **Linux / macOS**: Run `chmod +x run.sh && ./run.sh`
 
-### 2. Launch the Interactive GUI Dashboard
-Run the primary GUI application:
-```powershell
-python prithvi_weather_gui.py --port 5000
-```
-Open your browser and navigate to:
-```
-http://127.0.0.1:5000/
-```
+The launcher will automatically detect or create the virtual environment, install missing dependencies from `requirements.txt`, and start the server on port 5000.
+
+---
+
+### Option B: Running on Another PC (Manual Setup)
+
+When copying this project to a new PC (do not copy the `prithvi-env/` folder, as virtual environments are machine-specific):
+
+1. **Prerequisites**: Ensure Python 3.10+ (recommended 3.11 or 3.12) is installed.
+2. **Open Terminal / PowerShell** inside the project folder:
+   ```bash
+   cd NASA-SpaceApps-Hackathon-2026
+   ```
+3. **Create a fresh virtual environment**:
+   ```bash
+   python -m venv venv
+   ```
+4. **Activate the environment**:
+   - **Windows PowerShell**: `.\venv\Scripts\Activate.ps1`
+   - **Windows CMD**: `.\venv\Scripts\activate.bat`
+   - **macOS / Linux**: `source venv/bin/activate`
+5. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
+6. **Launch the GUI Server**:
+   ```bash
+   python prithvi_weather_gui.py --port 5000
+   ```
+7. **Open in Browser**:
+   Navigate to **[http://127.0.0.1:5000/](http://127.0.0.1:5000/)**
 
 ### 3. CLI Prediction Mode
 Predict comprehensive weather, soil strata, and agricultural feasibility directly from the terminal:
