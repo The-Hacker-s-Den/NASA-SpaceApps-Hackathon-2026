@@ -30,7 +30,7 @@ except ImportError:
     store_secure_api_key = lambda s, k: None
 
 # Official Configured NASA Hackathon Gemini API Key
-DEFAULT_GEMINI_KEY = "AQ.Ab8RN6KPqomSjcWvEjgY2XmvdsLjDwFj5_21VGRBfCWcB94PgQ"
+DEFAULT_GEMINI_KEY = "AQ.Ab8RN6KcLzu9gVxryPPcDXC-HTWpjTmTVKxzRJiMSHwEqul3Rg"
 
 # Supported Google Gemini Models in order of priority
 GEMINI_MODELS = [

@@ -59,7 +59,7 @@ from nasa_challenge_evaluator import (
 )
 
 # Gemini API key (stored in vault; hardcoded fallback for dashboard server)
-DEFAULT_GEMINI_KEY = "AQ.Ab8RN6KPqomSjcWvEjgY2XmvdsLjDwFj5_21VGRBfCWcB94PgQ"
+DEFAULT_GEMINI_KEY = "AQ.Ab8RN6KcLzu9gVxryPPcDXC-HTWpjTmTVKxzRJiMSHwEqul3Rg"
 
 HTML_DASHBOARD = r"""<!DOCTYPE html>
 <html lang="en">
